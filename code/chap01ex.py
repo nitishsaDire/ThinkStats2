@@ -14,11 +14,20 @@ import nsfg
 import thinkstats2
 
 
+def ReadRespondentData(dct_file='2002FemResp.dct',
+                       dat_file='2002FemResp.dat.gz'):
+    return nsfg.ReadFemResp(dct_file, dat_file);
+
+
 def main(script):
     """Tests the functions in this module.
 
     script: string script name
     """
+
+    respondentDf = ReadRespondentData()
+    print(respondentDf['pregnum'].value_counts())
+
     print('%s: All tests passed.' % script)
 
 
