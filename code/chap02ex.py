@@ -21,7 +21,14 @@ def Mode(hist):
 
     returns: value from Hist
     """
-    return 0
+    # mode = 0
+    # for key in hist:
+    #     if hist[key] > hist[mode]:
+    #         mode = key
+    p, x = max([(p, x) for x, p in hist.Items()])
+    return x
+    # return mode
+
 
 
 def AllModes(hist):
@@ -31,7 +38,17 @@ def AllModes(hist):
 
     returns: iterator of value-freq pairs
     """
-    return []
+    # hist_duplicate = hist
+    # hist_new = []
+    # while len(hist_duplicate.Values()) > 0:
+    #     mode = Mode(hist_duplicate)
+    #     hist_new.append([mode, hist_duplicate[mode]])
+    #     hist_duplicate.Remove(mode)
+
+    return [(k,f) for f,k in sorted([(f,k) for k,f in hist.Items()], reverse=True)]
+    # always try to do this way in python
+
+    # return hist_new
 
 
 def main(script):

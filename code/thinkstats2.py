@@ -421,6 +421,12 @@ class Hist(_DictWrapper):
         """Gets frequencies for a sequence of values."""
         return [self.Freq(x) for x in xs]
 
+    def Percent(self, xs):
+        """Gets percentage for combined values in xs"""
+        xs_sum = sum(self.Freqs(xs))
+        total_sum = sum(self.d.values())
+        return xs_sum*100/total_sum
+
     def IsSubset(self, other):
         """Checks whether the values in this histogram are a subset of
         the values in the given histogram."""
@@ -2527,6 +2533,11 @@ def TrimmedMeanVar(t, p=0.01):
     mu, var = MeanVar(t)
     return mu, var
 
+# It tells the difference between two dist. based on there means and variance.
+# if var2 is very large, others are same, so effective size dec because mean is now a very statistical measure., and vice versa.
+# if n2 is inversely prop to pooled_var, therefore, if n2 decreases, pool variance increases and size dec. More is n2 more we are giving weight
+# to var2.
+# pooled var is weghted var, like expectation in pdf.
 
 def CohenEffectSize(group1, group2):
     """Compute Cohen's d.
