@@ -401,6 +401,7 @@ class _DictWrapper(object):
 
 
 class Hist(_DictWrapper):
+
     """Represents a histogram, which is a map from values to frequencies.
 
     Values can be any hashable type; frequencies are integer counters.
